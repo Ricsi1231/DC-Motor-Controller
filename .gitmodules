@@ -1,0 +1,9 @@
+[submodule "labview"]
+	path = labview
+	url = https://github.com/Ricsi1231/DC-Motor-Controller-SCADA.git
+[submodule "hardware"]
+	path = hardware
+	url = https://github.com/Ricsi1231/DC-Motor-Controller-Hardware.git
+[submodule "firmware"]
+	path = firmware
+	url = https://github.com/Ricsi1231/DC-Motor-Controller-Firmware.git
