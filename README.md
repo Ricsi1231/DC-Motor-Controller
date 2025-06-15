@@ -48,9 +48,10 @@ All `.vi` files and LabVIEW resources are available in the `/labview` directory.
 ## Repository Structure
 ```
 DC-Motor-Controller/
-├── Hardware/    # Altium PCB design files
-├── Firmware/    # ESP32-S3 firmware source code (ESP-IDF)
-├── LabVIEW/     # LabVIEW SCADA interface (.vi)
+├── hardware/    # Altium PCB design files
+├── firmware/    # ESP32-S3 firmware source code (ESP-IDF)
+├── labview/     # LabVIEW SCADA interface (.vi)
+├── docs/        # Detailed project report
 └── README.md    # Project documentation
 ```
 ---
