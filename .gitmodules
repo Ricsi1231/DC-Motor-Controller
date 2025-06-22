@@ -1,6 +1,7 @@
 [submodule "labview"]
 	path = labview
 	url = https://github.com/Ricsi1231/DC-Motor-Controller-SCADA.git
+	branch = main
 [submodule "hardware"]
 	path = hardware
 	url = https://github.com/Ricsi1231/DC-Motor-Controller-Hardware.git
