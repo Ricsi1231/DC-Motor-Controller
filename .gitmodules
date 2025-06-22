@@ -9,3 +9,4 @@
 [submodule "firmware"]
 	path = firmware
 	url = https://github.com/Ricsi1231/DC-Motor-Controller-Firmware.git
+	branch = main
