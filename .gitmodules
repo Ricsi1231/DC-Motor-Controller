@@ -5,6 +5,7 @@
 [submodule "hardware"]
 	path = hardware
 	url = https://github.com/Ricsi1231/DC-Motor-Controller-Hardware.git
+	branch = main
 [submodule "firmware"]
 	path = firmware
 	url = https://github.com/Ricsi1231/DC-Motor-Controller-Firmware.git
