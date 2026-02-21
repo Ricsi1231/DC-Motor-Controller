@@ -1,71 +1,157 @@
-# DC Motor Controller – Real-Time Position Control System
+# DC Motor Controller - Real-Time Position Control System
 
 ## Overview
 
-This repository contains a complete embedded system project for **precise DC motor position control**. The system is divided into three major components:
+This repository contains a complete embedded system for **precise DC motor position control**. The system is divided into four major components:
 
-- **Hardware** – Custom PCB design for motor control
-- **Firmware** – ESP32-S3 firmware implementing PID-based control
-- **SCADA Interface** – LabVIEW-based HMI for real-time monitoring and tuning
+- **Firmware** - ESP32-S3 real-time motor control firmware with PID and motion profiling
+- **Hardware** - Custom Altium Designer PCB with motor driver, power management, and sensing
+- **SCADA** - LabVIEW HMI for real-time monitoring and PID tuning
+- **Simulation** - Python-based Fuzzy Logic vs PID control algorithm comparison
 
 ---
 
-## Hardware
+## System Architecture
 
-- Developed using **Altium Designer**
-- Custom-designed PCB for DC motor control applications
-- Includes motor driver circuitry, encoder interface, power regulation, and communication interfaces (USB/RS485)
-- Schematic and layout files included in the `/hardware` directory
+```
+┌──────────────────┐    Micro-USB     ┌──────────────────────────────────────────────┐
+│   Host PC        │◄────────────────►│  Custom PCB                                  │
+│                  │   USB CDC        │                                              │
+│  LabVIEW SCADA   │  (TinyUSB)       │  ESP32-S3 ──► DRV8876 H-Bridge ──► DC Motor  │
+│  - Position plot │                  │      ▲                               │       │
+│  - PID tuning    │                  │      └──── PCNT ◄── Quadrature Encoder       │
+│  - Monitoring    │                  │                                              │
+└──────────────────┘                  └──────────────────────────────────────────────┘
+
+┌──────────────────┐
+│  Simulation      │  Validates control algorithms offline
+│  (Python)        │  Fuzzy Logic vs PID comparison
+└──────────────────┘
+```
+
+---
+
+## Repository Structure
+
+```
+DC-Motor-Controller/
+├── DC-Motor-Controller-Firmware/                    # ESP32-S3 firmware (C++, ESP-IDF)
+├── DC-Motor-Controller-Hardware/                    # Altium Designer PCB design
+├── DC-Motor-Controller-SCADA/                       # LabVIEW HMI interface
+├── DC-Motor-Postion-Control-Fuzzy-PID-Simulation/   # Python control simulation
+└── README.md
+```
 
 ---
 
 ## Firmware
 
-- Platform: **ESP32-S3**
-- Framework: **ESP-IDF**
-- Language: **C++**
-- Implements closed-loop position control using a PID controller
-- Communication interface for command/feedback
-- Real-time feedback processing from encoders
-- Configurable control parameters via external commands
+**Directory:** `DC-Motor-Controller-Firmware/`
 
-All source code and configuration files are located in the `/firmware` directory.
+| | |
+|---|---|
+| **Platform** | ESP32-S3 |
+| **Framework** | ESP-IDF v5.5.1 |
+| **Language** | C++ |
+| **Version** | v1.2.0 |
 
----
+**Key features:**
+- PID position control with anti-windup
+- DRV8876 motor driver (PWM, fault detection, ramp control)
+- Quadrature encoder via ESP32 PCNT peripheral with speed filtering
+- USB CDC communication (TinyUSB)
+- Motion profiling (trapezoid and S-curve acceleration shaping)
+- Modular interface-based architecture (IMotorController, IEncoder, IMotorDriver, IComm, IPIDController)
+- RGB LED status indication
+- 6 example projects included
 
-## SCADA Interface
-
-- Implemented in **LabVIEW**
-- Provides a graphical user interface (GUI) for:
-  - Real-time position feedback
-  - Live tuning of PID parameters
-  - Serial communication configuration
-  - Status and fault monitoring
-
-All `.vi` files and LabVIEW resources are available in the `/labview` directory.
-
----
-## Repository Structure
+**Build & flash:**
+```bash
+idf.py set-target esp32s3
+idf.py build
+idf.py flash monitor
 ```
-DC-Motor-Controller/
-├── hardware/    # Altium PCB design files
-├── firmware/    # ESP32-S3 firmware source code (ESP-IDF)
-├── labview/     # LabVIEW SCADA interface (.vi)
-├── docs/        # Detailed project report
-└── README.md    # Project documentation
-```
+
 ---
+
+## Hardware
+
+**Directory:** `DC-Motor-Controller-Hardware/`
+
+| | |
+|---|---|
+| **Tool** | Altium Designer |
+| **Schematics** | 16 sheets (modular organization) |
+
+**Key subsystems:**
+- ESP32-S3 MCU (power and I/O)
+- DRV8876 H-bridge motor driver
+- Power generation (buck converter + LDO)
+- Quadrature encoder input (position sensing)
+- Temperature and voltage sensing
+- USB-C and RS485 communication interfaces
+- Programmer interface
+- RGB LED user indicator
+
+**Manufacturing outputs included** - CAMtastic files, ready for PCB fabrication.
+
+---
+
+## SCADA
+
+**Directory:** `DC-Motor-Controller-SCADA/`
+
+| | |
+|---|---|
+| **Platform** | LabVIEW |
+| **Communication** | VISA (USB/Serial) |
+
+**Features:**
+- Real-time position feedback visualization
+- Live PID parameter tuning
+- Serial communication configuration
+- Status and fault monitoring
+- 3D visualization controls
+
+---
+
+## Simulation
+
+**Directory:** `DC-Motor-Postion-Control-Fuzzy-PID-Simulation/`
+
+| | |
+|---|---|
+| **Language** | Python 3.10+ |
+| **Dependencies** | numpy, scipy, scikit-fuzzy, matplotlib, simple-pid |
+
+**Features:**
+- Fuzzy Logic vs PID controller comparison
+- Realistic DC motor physics (electrical + mechanical modeling)
+- Encoder simulation with quantization (1000 PPR) and Gaussian noise
+- Comprehensive visualization (membership functions, 3D control surfaces, phase plane analysis)
+
+**Quick start:**
+```bash
+./setup.sh
+./run_simulation.sh start_position=0 end_position=90
+./run_simulation.sh start_position=-90 end_position=45 controller=pid
+```
+
+---
+
 ## Requirements
 
-- [ESP-IDF v5.4](https://docs.espressif.com/projects/esp-idf/) for firmware development
-- [NI LabVIEW Runtime Engine](https://www.ni.com/en/support/downloads/software-products.html) for SCADA interface
+| Component | Requirement |
+|-----------|-------------|
+| Firmware | [ESP-IDF v5.5.1](https://docs.espressif.com/projects/esp-idf/) |
+| Hardware | [Altium Designer](https://www.altium.com/) (viewing/editing) |
+| SCADA | [NI LabVIEW Runtime Engine](https://www.ni.com/en/support/downloads/software-products.html) |
+| Simulation | Python 3.10+ with `pip install -r requirements.txt` |
 
 ---
 
 ## License
 
-© 2025 Nagy Richárd.  
-This project was created as part of the **Graphic Programming** course.
-
-It is intended for **educational and prototyping purposes only**.  
+(c) 2026 Nagy Richard.
+This project is intended for **educational and prototyping purposes only**.
 Commercial use, distribution, or modification requires **prior written permission** from the author.
