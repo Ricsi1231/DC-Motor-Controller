@@ -1,0 +1,12 @@
+[submodule "DC-Motor-Controller-Firmware"]
+	path = DC-Motor-Controller-Firmware
+	url = https://github.com/Ricsi1231/DC-Motor-Controller-Firmware.git
+[submodule "DC-Motor-Controller-Hardware"]
+	path = DC-Motor-Controller-Hardware
+	url = https://github.com/Ricsi1231/DC-Motor-Controller-Hardware.git
+[submodule "DC-Motor-Controller-SCADA"]
+	path = DC-Motor-Controller-SCADA
+	url = https://github.com/Ricsi1231/DC-Motor-Controller-SCADA.git
+[submodule "DC-Motor-Postion-Control-Fuzzy-PID-Simulation"]
+	path = DC-Motor-Postion-Control-Fuzzy-PID-Simulation
+	url = https://github.com/Ricsi1231/DC-Motor-Postion-Control-Fuzzy-Simulation.git

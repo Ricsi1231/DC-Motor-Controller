@@ -4,10 +4,10 @@
 
 This repository contains a complete embedded system for **precise DC motor position control**. The system is divided into four major components:
 
-- **Firmware** - ESP32-S3 real-time motor control firmware with PID and motion profiling
-- **Hardware** - Custom Altium Designer PCB with motor driver, power management, and sensing
-- **SCADA** - LabVIEW HMI for real-time monitoring and PID tuning
-- **Simulation** - Python-based Fuzzy Logic vs PID control algorithm comparison
+- [**Firmware**](https://github.com/Ricsi1231/DC-Motor-Controller-Firmware) - ESP32-S3 real-time motor control firmware with PID and motion profiling
+- [**Hardware**](https://github.com/Ricsi1231/DC-Motor-Controller-Hardware) - Custom Altium Designer PCB with motor driver, power management, and sensing
+- [**SCADA**](https://github.com/Ricsi1231/DC-Motor-Controller-SCADA) - LabVIEW HMI for real-time monitoring and PID tuning
+- [**Simulation**](https://github.com/Ricsi1231/DC-Motor-Postion-Control-Fuzzy-Simulation) - Python-based Fuzzy Logic vs PID control algorithm comparison
 
 ---
 
@@ -46,7 +46,7 @@ DC-Motor-Controller/
 
 ## Firmware
 
-**Directory:** `DC-Motor-Controller-Firmware/`
+**Repository:** [`DC-Motor-Controller-Firmware`](https://github.com/Ricsi1231/DC-Motor-Controller-Firmware)
 
 | | |
 |---|---|
@@ -76,7 +76,7 @@ idf.py flash monitor
 
 ## Hardware
 
-**Directory:** `DC-Motor-Controller-Hardware/`
+**Repository:** [`DC-Motor-Controller-Hardware`](https://github.com/Ricsi1231/DC-Motor-Controller-Hardware)
 
 | | |
 |---|---|
@@ -99,7 +99,7 @@ idf.py flash monitor
 
 ## SCADA
 
-**Directory:** `DC-Motor-Controller-SCADA/`
+**Repository:** [`DC-Motor-Controller-SCADA`](https://github.com/Ricsi1231/DC-Motor-Controller-SCADA)
 
 | | |
 |---|---|
@@ -117,7 +117,7 @@ idf.py flash monitor
 
 ## Simulation
 
-**Directory:** `DC-Motor-Postion-Control-Fuzzy-PID-Simulation/`
+**Repository:** [`DC-Motor-Postion-Control-Fuzzy-PID-Simulation`](https://github.com/Ricsi1231/DC-Motor-Postion-Control-Fuzzy-Simulation)
 
 | | |
 |---|---|
